@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahriye Üçok — Celladına Mektup Yazan Kadın</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+  :root {
+    --paper: #f8f3ec;
+    --dark: #17120e;
+    --ink: #2a1f17;
+    --bordeaux: #6b1a1a;
+    --ash: #7c7168;
+    --rule: #c4b8aa;
+    --warm-bg: #ede7dd;
+    --accent: #a0411a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', 'Garamond', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.9;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    color: var(--paper);
+    padding: 96px 40px 72px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--bordeaux), var(--accent), var(--bordeaux));
+  }
+
+  .hero-eyebrow {
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--rule);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 7vw, 84px);
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+    color: var(--paper);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: #c89a7a;
+  }
+
+  .hero-dates {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--rule);
+    letter-spacing: 2px;
+    margin-bottom: 36px;
+  }
+
+  .hero-rule {
+    width: 1px;
+    height: 48px;
+    background: var(--bordeaux);
+    margin: 0 auto 28px;
+  }
+
+  .hero-lead {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.75;
+    color: #b8a898;
+    font-style: italic;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* DROPCAP intro */
+  .intro {
+    margin: 72px 0 56px;
+  }
+
+  .intro p:first-child::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 0.8;
+    float: left;
+    margin: 8px 10px 0 0;
+    color: var(--bordeaux);
+  }
+
+  /* SECTIONS */
+  section {
+    margin: 64px 0;
+  }
+
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .section-divider {
+    width: 32px;
+    height: 1px;
+    background: var(--bordeaux);
+    margin: 18px 0 32px;
+  }
+
+  p {
+    margin-bottom: 1.4em;
+  }
+
+  /* PULL QUOTES */
+  blockquote {
+    margin: 44px -20px;
+    padding: 28px 40px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  blockquote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    line-height: 1.55;
+    color: var(--bordeaux);
+    margin: 0;
+    text-align: center;
+  }
+
+  blockquote cite {
+    display: block;
+    margin-top: 12px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ash);
+    text-align: center;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    margin: 36px 0;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--rule);
+  }
+
+  .tl-item {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 28px;
+    align-items: flex-start;
+  }
+
+  .tl-year {
+    min-width: 72px;
+    text-align: right;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--bordeaux);
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .tl-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bordeaux);
+    flex-shrink: 0;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-content {
+    font-size: 17px;
+    line-height: 1.6;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted var(--rule);
+    flex: 1;
+  }
+
+  .tl-item:last-child .tl-content {
+    border-bottom: none;
+  }
+
+  .tl-content strong {
+    display: block;
+    font-weight: 500;
+    color: var(--dark);
+    font-size: 17px;
+  }
+
+  /* CRITICAL BOX */
+  .irony-box {
+    background: #f0e8e0;
+    border-left: 3px solid var(--bordeaux);
+    padding: 28px 32px;
+    margin: 40px 0;
+  }
+
+  .irony-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bordeaux);
+    margin-bottom: 12px;
+    display: block;
+    font-weight: 500;
+  }
+
+  .irony-box p {
+    font-size: 17px;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* WORKS */
+  .works-grid {
+    margin: 28px 0;
+  }
+
+  .work-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+  }
+
+  .work-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ash);
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  .work-title {
+    font-style: italic;
+    font-size: 17px;
+    color: var(--dark);
+  }
+
+  .work-note {
+    font-size: 14px;
+    color: var(--ash);
+    margin-top: 3px;
+  }
+
+  /* CLOSING */
+  .closing {
+    background: var(--dark);
+    color: var(--paper);
+    padding: 64px 40px;
+    text-align: center;
+    margin-top: 80px;
+  }
+
+  .closing h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--paper);
+    margin-bottom: 20px;
+  }
+
+  .closing p {
+    max-width: 560px;
+    margin: 0 auto 1.4em;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #b8a898;
+  }
+
+  .closing .closing-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--bordeaux);
+    margin: 32px auto;
+  }
+
+  .closing .epitaph {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: #c89a7a;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .hero { padding: 64px 24px 56px; }
+    .container { padding: 0 20px; }
+    blockquote { margin: 32px 0; padding: 20px 24px; }
+    blockquote p { font-size: 20px; }
+    .timeline::before { left: 60px; }
+    .tl-year { min-width: 52px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-eyebrow">Türkiye'nin İlk Kadın İlahiyatçısı</p>
+  <h1>Bahriye Üçok<br><em>Celladına Mektup Yazan Kadın</em></h1>
+  <p class="hero-dates">1919 — 6 Ekim 1990</p>
+  <div class="hero-rule"></div>
+  <p class="hero-lead">İslam tarihini bilimsel bir gözle inceleyen, dinin özündeki hoşgörüyü savunan ve bu yüzden öldürülen bir aydının portresi.</p>
+</header>
+
+<div class="container">
+
+  <!-- GİRİŞ -->
+  <div class="intro">
+    <p>6 Ekim 1990, bir Cumartesi öğleden sonrasıydı. Ankara Çankaya'da, Köroğlu Caddesi üzerindeki apartmana bir kargo paketi geldi. Gönderici olarak "İlmî Araştırmalar Vakfı" yazıyordu; içinde kitaplar vardı. Bahriye Üçok, kapısının önünde paketi açmaya çalıştı. Saat 16.30'da bomba patladı. Saat 20.00'de, 71 yaşında, Hacettepe Hastanesi'nde hayatını kaybetti.</p>
+
+    <p>O gün Türkiye yalnızca bir ilahiyatçıyı değil; İslam tarihini çağdaş ve eleştirel bir yöntemle inceleyen, kadın haklarını dinin özünden türeten ve laikliği bir ayrışma değil bir özgürlük zemini olarak savunan bir sesi yitirdi. Üçok'un ölümü, yalnızca bir suikastin değil, 12 Eylül sonrasında hızlanan ideolojik bir erozyonun simgesi oldu.</p>
+  </div>
+
+  <!-- HAYAT -->
+  <section>
+    <span class="section-tag">Hayatı</span>
+    <h2>Kurtuluş Savaşı'nın Kızı</h2>
+    <div class="section-divider"></div>
+
+    <p>Bahriye Üçok, 1919 yılında Trabzon'da dünyaya geldi. Cumhuriyet'in kuruluşuyla aynı yıl doğan bu çocuk, ilerleyen on yıllar boyunca Cumhuriyet'in laik ve bilimsel ruhunu ilahiyat çatısı altında savunacaktı. Annesi Nadire Hanım ile Trabzon-Ordu arasında geçen zor bir çocukluğu, babası Hamit Bey tarafından bebekliğinde terk edilmiş olması ve ömür boyu duyduğu baba özlemi, onu erken yaştan itibaren hem dindar hem de Atatürkçü bir kimlikle şekillendirdi.</p>
+
+    <p>İlk ve ortaokulu Ordu'da okudu. İstanbul Kandilli Kız Lisesi'nden mezun oldu. Ardından Ankara'ya geçerek Ankara Üniversitesi Dil ve Tarih-Coğrafya Fakültesi Ortaçağ Türk-İslam Tarihi Bölümü'nde lisans eğitimini tamamladı. Aynı dönemde Devlet Konservatuarı Opera Bölümü'ne devam ederek bu bölümü de bitirdi. Bir ilahiyatçı olarak müziği de derinlemesine öğrenen bu isim, alışılmış sınırlara sığmayı hiç sevmedi.</p>
+
+    <p>Mezuniyetinin ardından Samsun ve Ankara'da on bir yıl lise öğretmenliği yaptı. Geçim derdi ile bir yandan doktora yaptığı, diğer taraftan dikiş diktiği yıllar geçirdi. 1953'te akademiye adım attığında, önünde hem gerçek hem simgesel bir "ilk" bekliyordu.</p>
+  </section>
+
+  <!-- AKADEMİK HAYAT -->
+  <section>
+    <span class="section-tag">Akademi</span>
+    <h2>İlk Kadın, İlk Sorular</h2>
+    <div class="section-divider"></div>
+
+    <p>1953 yılında Ankara Üniversitesi İlahiyat Fakültesi'nde öğretim üyesi oldu ve bu fakültenin ilk kadın akademisyeni unvanını kazandı. Yalnızca bir "ilk" değildi; getirdiği sorular da alışılmışın dışındaydı.</p>
+
+    <p>1957'de "İslam Tarihinde İlk Sahte Peygamberler" konulu teziyle doktorasını tamamladı. Bu çalışmada Hz. Muhammed'in vefatından sonra ortaya çıkan inanç akımlarını siyasi ve sosyal bağlamıyla ele aldı; inanç tarihine tabu gözetmeksizin yaklaştı.</p>
+
+    <p>1964'te "İslam Devletlerinde Kadın Hükümdarlar" adlı eseriyle doçentliğe yükseldi. Bu çalışma, İslam coğrafyasında fiilen hüküm sürmüş kadın yöneticileri —Memlüklerde, Delhî Sultanlığı'nda, Fatımî devletinde— belgeleyen kapsamlı bir tarih araştırmasıydı. Tezi tek bir soru üzerine kuruluydu: Eğer İslam kadını siyasetten dışlıyorsa, bu kadınlar nasıl tahta çıktı? Cevap, yazılı tarihten geliyordu ve ideolojik önyargıları yıkıyordu.</p>
+
+    <blockquote>
+      <p>"Bir kadın makyajla değil ilimle, eğitimle güzelleşebilir. Her eğitimli kadın bir kuşa benzer — istediği her yere uçabilir."</p>
+      <cite>Bahriye Üçok</cite>
+    </blockquote>
+
+    <p>Arapça ve Farsça'yı iyi derecede bilen Üçok, Kur'an-ı Kerim'e bağlı kalarak İslam dinini çağdaş, gerçekçi ve dinin özünde bulunan hoşgörüyle yorumladı. Bu yorumun özü şuydu: Atatürk devrimlerinin ilerici ruhu ile İslam'ın öz öğretileri arasında bir çelişki yoktur; çelişki, dinin siyasi araç olarak araçsallaştırılmasından kaynaklanır.</p>
+  </section>
+
+  <!-- ESERLERİ -->
+  <section>
+    <span class="section-tag">Eserleri</span>
+    <h2>Kalemde Bıraktıkları</h2>
+    <div class="section-divider"></div>
+
+    <div class="works-grid">
+      <div class="work-item">
+        <span class="work-year">1965</span>
+        <div>
+          <div class="work-title">İslam Devletinde Kadın Hükümdarlar</div>
+          <div class="work-note">Türk Tarih Kurumu — Doçentlik tezi; tarihsel kanıtlarla İslam'da kadın liderliğini belgeleyen akademik çalışma.</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <span class="work-year">1967</span>
+        <div>
+          <div class="work-title">İslam'dan Dönenler ve Yalancı Peygamberler</div>
+          <div class="work-note">İlahiyat Fakültesi Yayınları — Ridde hareketlerini siyasi ve toplumsal bağlamıyla ele alan doktora çalışması.</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <span class="work-year">1981</span>
+        <div>
+          <div class="work-title">İslam Devletlerinde Türk Naibeler ve Kadın Hükümdarlar</div>
+          <div class="work-note">Kültür ve Turizm Bakanlığı — Kadın hükümdarlar çalışmasının genişletilmiş versiyonu.</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <span class="work-year">1983</span>
+        <div>
+          <div class="work-title">İslam Tarihi: Emeviler Abbasiler</div>
+          <div class="work-note">MEB — Erken İslam tarihinin akademik özeti.</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <span class="work-year">2000</span>
+        <div>
+          <div class="work-title">Atatürk'ün İzinde Bir Arpa Boyu</div>
+          <div class="work-note">Cem Yayınevi — Cumhuriyet tarihine ve Atatürk mirasına dair değerlendirmeler; ölümünden sonra yayımlandı.</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <span class="work-year">2010</span>
+        <div>
+          <div class="work-title">Şeriat Sarmalında Türkiye</div>
+          <div class="work-note">Cumhuriyet Kitapları — 12 Eylül sonrası siyasi İslam'ın Türkiye'yi nasıl dönüştürdüğüne dair analiz; ölümünden sonra yayımlandı.</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:16px; color: var(--ash); font-style:italic;">Aynı zamanda Cumhuriyet gazetesinde köşe yazarlığı yaptı ve Aly Mazahéri'nin "Ortaçağda Müslümanların Günlük Yaşayışları" adlı eserini Türkçeye çevirdi.</p>
+  </section>
+
+  <!-- SİYASET -->
+  <section>
+    <span class="section-tag">Siyasi Hayatı</span>
+    <h2>Kürsüden Meclis'e</h2>
+    <div class="section-divider"></div>
+
+    <p>Ankara Üniversitesi İlahiyat Fakültesi'nin ilk kadın öğretim üyesi olan Bahriye Üçok'un hayat akışı, TRT Ankara Radyosu'nda yaptığı konuşmalardan dönemin Cumhurbaşkanı Cevdet Sunay'ın etkilenmesi ve onunla görüşmek istemesiyle değişti. 1971 yılında dönemin Cumhurbaşkanı Cevdet Sunay tarafından kontenjan senatörü seçildi. Beş yıl boyunca Cumhuriyet Senatosu divan üyeliği yaptıktan sonra 1977'de CHP'ye katıldı.</p>
+
+    <p>1983 yılında Halkçı Parti'nin kurucu üyesi oldu. 1984'te yapılan genel seçimlerde bu partiden Ordu milletvekili seçilerek TBMM'ye girdi. 1986 yılında SHP'ye geçti.</p>
+
+    <p>Meclis kürsüsünden de aynı soruları sormaya devam etti: Din eğitimi neden siyasi bir araç haline geliyor? İmam-Hatip okulları hangi toplumu inşa etmek için bu hızla çoğaltılıyor? Laiklik neden dinsizlik olarak sunuluyor? Bu sorular 1980 sonrasında giderek daha tehlikeli bir hal alıyordu.</p>
+  </section>
+
+  <!-- 12 EYLÜL VE CELLADINA MEKTUP -->
+  <section>
+    <span class="section-tag">Tarihin İronisi</span>
+    <h2>Celladına Mektup</h2>
+    <div class="section-divider"></div>
+
+    <p>12 Eylül 1980 darbesinin ardından, askeri yönetim "Türk-İslam sentezi"ni toplumu yeniden düzenlemek için resmî ideoloji haline getirdi. Bu çerçevede Diyanet İşleri Başkanlığı'nın kurumsal ağırlığı artırıldı, İmam-Hatip okulları kitlesel biçimde yaygınlaştırıldı, din eğitimi zorunlu hale getirildi. Üstelik bazı İslamcı örgütler, komünizm karşıtı bir denge unsuru olarak himaye gördü ya da görmezden gelindi.</p>
+
+    <p>Aynı dönemde, Milli Güvenlik Kurulu'nun isteği üzerine Bahriye Üçok'tan Türkiye'deki din eğitimi üzerine bir rapor hazırlaması istendi.</p>
+
+    <div class="irony-box">
+      <span class="irony-label">Tarihin İronisi</span>
+      <p>Bahriye Üçok, 12 Eylül darbesini yapan MGK'nın isteği üzerine din eğitimi raporu hazırladı. Laik, modernist ve bilimsel bir yaklaşımla kaleme aldığı bu rapor, sistemin o sırada inşa ettiği "Türk-İslam sentezi"ne doğrudan itirazdan ibaretti. On yıl sonra, aynı sistemin büyüttüğü ve koruduğu yapılar içinden çıkan bir örgüt, onu bombalı bir kitap paketiyle susturdu. Celladına mektup yazmıştı.</p>
+    </div>
+
+    <p>Kasım 1988'de katıldığı bir TV programında "İslam'da örtünmenin ve oruç tutmanın zorunlu olmadığını" açıklaması üzerine sözde "İslami Hareket" adlı örgütten tehditler almaya başladı. Tehditler somuttu ve artıyordu. Bahriye Üçok'un en büyük korkusu kızı Kumru'nun yalnız kalmasıydı. Eşi, yol arkadaşı, biricik aşkı Coşkun Üçok'u kaybedeli iki yıl olmuştu.</p>
+
+    <p>Katledildiği sırada SHP için bir laiklik raporu hazırlamaktaydı. Paketin bomba olabileceğini hissetti. Son sözleri şöyle aktarılmıştır: <em>"Kumru, sen uzak dur kızım…"</em></p>
+  </section>
+
+  <!-- KRONOLOJİ -->
+  <section>
+    <span class="section-tag">Zaman Çizelgesi</span>
+    <h2>Bir Ömrün İzleri</h2>
+    <div class="section-divider"></div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-year">1919</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content"><strong>Trabzon'da doğdu.</strong> Kurtuluş Savaşı'nın başladığı yıl.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">1953</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content"><strong>Ankara Üniversitesi İlahiyat Fakültesi'ne katıldı.</strong> Türkiye'nin bir ilahiyat fakültesinde görev alan ilk kadın akademisyen oldu.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">1957</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content"><strong>Doktora.</strong> "İslam Tarihinde İlk Sahte Peygamberler" — ridde hareketlerine siyasi ve sosyal bir bakış.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">1964</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content"><strong>Doçentlik.</strong> "İslam Devletlerinde Kadın Hükümdarlar" — İslam coğrafyasında tahta çıkmış kadınların tarihsel dökümü.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">1971</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content"><strong>Cumhuriyet Senatosu.</strong> Cumhurbaşkanı Sunay tarafından kontenjan senatörü olarak atandı.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">1980</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content"><strong>12 Eylül Darbesi.</strong> MGK isteğiyle din eğitimi raporu hazırladı. "Türk-İslam sentezi" resmî ideoloji oldu; İmam-Hatip okulları yaygınlaştırıldı.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">1984</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content"><strong>TBMM.</strong> Halkçı Parti'den Ordu milletvekili seçildi.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">1988</span>
+        <div class="tl-dot"></div>
+        <div class="tl-content"><strong>Hedef haline geldi.</strong> TRT'deki TV programında "İslam'da örtünmenin zorunlu olmadığı" açıklaması üzerine İslamcı örgütlerden tehditler almaya başladı.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-year">6 Ekim 1990</span>
+        <div class="tl-dot" style="background: var(--bordeaux); width:13px; height:13px; margin-top:5px;"></div>
+        <div class="tl-content"><strong>Suikast.</strong> Evine kargo yoluyla gönderilen bombalı kitap paketini açarken hayatını kaybetti. 71 yaşındaydı. Son raporu tamamlanmamış kaldı.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAVASI -->
+  <section>
+    <span class="section-tag">Yargı Süreci</span>
+    <h2>Adalet Gecikti, Tam Gelmedi</h2>
+    <div class="section-divider"></div>
+
+    <p>Cinayeti önce İslâmî Hareket adlı bir örgüt üstlendi. Örgüt adına konuşan bir kişi, Üçok'u "tesettür konusundaki düşünceleri yüzünden" cezalandırdıklarını ve "İslam'a sınır koyanları öldürmeyi borç bildiklerini" söyledi.</p>
+
+    <p>Yıllar süren davalar sonunda, "Umut Operasyonu" kapsamında yargılanan Ferhat Özmen adlı şahıs müebbet hapis cezası aldı. Üçok'un öldürülmesi, aynı dönemde gerçekleşen Uğur Mumcu, Ahmet Taner Kışlalı, Muammer Aksoy ve Turan Dursun suikastlarıyla birlikte Türkiye'nin en ağır entelektüel kayıpları arasında yer almaktadır. Bu suikastların tamamının arka planı hâlâ tam anlamıyla aydınlatılabilmiş değildir.</p>
+
+    <p>Failin cezalandırılmış olması, soruyu ortadan kaldırmaz: O bombayı yapan eller, hangi iklimin ürünüydü? 1980 sonrasında devlet eliyle büyütülen "Türk-İslam sentezi" ideolojisi, radikal İslamcı şiddete zemin hazırladı. Bahriye Üçok bunu gördü ve söyledi; öldürülmeden önce de söylüyordu, öldürüldüğü gün de bir rapor yazıyordu.</p>
+  </section>
+
+  <!-- MİRAS -->
+  <section>
+    <span class="section-tag">Mirası</span>
+    <h2>Sesinin Devamı</h2>
+    <div class="section-divider"></div>
+
+    <p>Ölümünün ardından adı İzmir'de önemli bir meydana, bir bulvara, Narlıdere'de bir park ve bir mahalleye; Artvin, Edirne, Kocaeli, Bursa ve Ankara'da birer caddeye, İstanbul Kadıköy Belediyesi'ne ait bir çocuk yuvasına verildi. Kaldırımlar ve okullar onun adını taşıdı. Ama asıl mirası taşta değil, sorduğu sorulardaydı.</p>
+
+    <p>Bahriye Üçok'un çalışmaları, bugün hâlâ güncel olan üç temel soruya odaklanıyordu: İslam tarihinde gerçekten ne oldu — kaynaklar bize ne söylüyor, ne saklıyor? Kadın, dini metinlerin öz yorumunda nerede duruyor — yazılı tarih ne diyor? Ve laiklik, dinin düşmanı mıdır yoksa dini özgürleştiren bir ilke midir?</p>
+
+    <p>Bu sorular, 1990'da bombayla susturulmaya çalışıldı. Susturulamadı.</p>
+
+    <blockquote>
+      <p>"Atatürk devrimleri İslam'a karşı değildi; tam aksine, insanların inançlarını özgürce yaşayabilmesi için vardı."</p>
+      <cite>Bahriye Üçok</cite>
+    </blockquote>
+  </section>
+
+</div>
+
+<!-- KAPANIŞ -->
+<div class="closing">
+  <div class="container">
+    <h2>Ona Borçluyuz</h2>
+    <p>Bahriye Üçok, ömrünü bir ayrışmayı ortadan kaldırmaya adadı: Dindar olmak ile laik olmak arasındaki yapay duvarı yıkmak istedi. Bilimin ve tarihin dine düşman olmadığını, tam tersine dinin gerçek yüzünü ortaya çıkardığını göstermeye çalıştı.</p>
+    <p>Bunu hem akademide hem kürsüde hem meclis koridorlarında hem de tehdit altında geçen son iki yılında yaptı. 1990'da elinde bitmemiş bir rapor, arka planda susturmak isteyenler varken dahi yazmaya devam etti.</p>
+    <div class="closing-rule"></div>
+    <p class="epitaph">Bilim tarihe borcunu öder. Onun da adını tarihe yazmak, borcun en küçük kısmıdır.</p>
+  </div>
+</div>
+
+</body>
+</html>
