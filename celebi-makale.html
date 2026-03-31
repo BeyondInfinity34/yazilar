@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Çelebi — Bir Unvanın Anatomisi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap');
+
+  :root {
+    --cream: #f5f0e8;
+    --dark: #1a1714;
+    --ink: #2c2620;
+    --rust: #8b3a2a;
+    --gold: #b8860b;
+    --muted: #7a6e62;
+    --rule: #c8b89a;
+    --light-bg: #ede8df;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.85;
+    font-optical-sizing: auto;
+  }
+
+  /* Header */
+  header {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(184,134,11,0.04) 40px,
+      rgba(184,134,11,0.04) 41px
+    );
+    pointer-events: none;
+  }
+
+  .header-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--rule);
+    margin-bottom: 40px;
+  }
+
+  .header-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 32px;
+  }
+
+  .meta {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Layout */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* Section navigation */
+  .toc {
+    background: var(--light-bg);
+    border-left: 3px solid var(--gold);
+    padding: 32px 36px;
+    margin: 60px 0;
+  }
+
+  .toc-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .toc ol {
+    padding-left: 20px;
+  }
+
+  .toc li {
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  .toc a {
+    color: var(--rust);
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    text-decoration: underline;
+  }
+
+  /* Sections */
+  section {
+    margin: 72px 0;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .section-num {
+    font-family: 'Source Serif 4', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .section-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--rust);
+    margin: 20px 0 32px;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  /* Pull quotes */
+  blockquote {
+    border-left: 4px solid var(--rust);
+    margin: 40px 0;
+    padding: 16px 28px;
+    background: var(--light-bg);
+  }
+
+  blockquote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--dark);
+    margin: 0;
+  }
+
+  blockquote cite {
+    display: block;
+    margin-top: 12px;
+    font-family: 'Source Serif 4', serif;
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+
+  /* Warning / critical note */
+  .critical {
+    background: #fdf4ee;
+    border: 1px solid #d4956a;
+    border-left: 4px solid var(--rust);
+    padding: 24px 28px;
+    margin: 36px 0;
+    border-radius: 2px;
+  }
+
+  .critical-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 400;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .critical p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 15px;
+  }
+
+  th {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 10px 16px;
+    text-align: left;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  tr:nth-child(even) td {
+    background: var(--light-bg);
+  }
+
+  /* Footnote style references */
+  .source-note {
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+    margin-top: 36px;
+    font-style: italic;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--dark);
+    color: var(--muted);
+    text-align: center;
+    padding: 48px 32px;
+    margin-top: 80px;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  footer .footer-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 20px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    header { padding: 60px 24px 48px; }
+    .container { padding: 0 20px; }
+    table { font-size: 13px; }
+    td, th { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <p class="header-label">Kaynak Eleştirisi · Türk Tarih Yazımı</p>
+    <h1>Çelebi</h1>
+    <p class="subtitle">Bir Unvanın Anatomisi ve Etrafındaki Kurgular</p>
+    <div class="header-rule"></div>
+    <p class="meta">Araştırma Notu · 2025</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <nav class="toc">
+    <p class="toc-title">İçindekiler</p>
+    <ol>
+      <li><a href="#etimoloji">Kökeni: Bilinen, Bilinmeyen, Uydurulmuş</a></li>
+      <li><a href="#eflaqi">Ahmed Eflâkî Meselesi: Var mı, Yok mu?</a></li>
+      <li><a href="#golpinarli">Gölpınarlı'nın Terminoloji Sorunu</a></li>
+      <li><a href="#tdvia">TDV İslâm Ansiklopedisi: "İhtilalin Ansiklopedisi"</a></li>
+      <li><a href="#papa">Yapısal Benzerlik: Çelebi ve Papa</a></li>
+      <li><a href="#sonuc">Sonuç: Tarih mi, Kurgu mu?</a></li>
+    </ol>
+  </nav>
+
+  <!-- GİRİŞ -->
+  <section>
+    <p>"Çelebi" kelimesi, Anadolu tarihinde çokça geçen, bugün de anlaşılan, ama kökeni hâlâ tartışmalı bir unvandır. Sorun şu ki, bu tartışma bilimsel yöntemlerle değil, ideolojik tercihlerle yürütülmüştür. Mevcut akademik anlatı, birbiriyle bağlantılı birkaç zayıf halkaya dayanmaktadır: Kökeni belirsiz bir anlatı, varlığı şüpheli bir tarihçi ve tarafsızlığı sorgulanabilir bir ansiklopedi.</p>
+    <p>Bu yazı, söz konusu halkaları sırayla incelemeyi ve "bilimsel" diye sunulan iddiaların ne kadarının gerçekten kanıta dayandığını ortaya koymayı amaçlamaktadır. Alternatif bir tarih yazmak değil; mevcut anlatının hangi noktalarında kanıtın bitip kurgusun başladığını göstermek istiyoruz.</p>
+  </section>
+
+  <!-- 1. ETİMOLOJİ -->
+  <section id="etimoloji">
+    <span class="section-num">I.</span>
+    <h2>Kökeni: Bilinen, Bilinmeyen, Uydurulmuş</h2>
+    <div class="section-rule"></div>
+
+    <p>Akademik kaynaklardaki hâkim görüş, "çelebi" kelimesinin Türkçe kökenli olduğu ve eski Türkçede "Tanrı, Allah" anlamına gelen <em>çalap</em> (veya <em>çalab</em>) kelimesinden türediği yönündedir. "Çalabî" (Allah'a mensup) zamanla "çelebi"ye dönüşmüş olur. Bu türetme zinciri kulağa mantıklı gelse de temel bir sorunla karşı karşıyadır:</p>
+
+    <div class="critical">
+      <span class="critical-label">Kanıt Sorunu</span>
+      <p>"Çalap" kelimesinin Mevlânâ döneminden (13. yüzyıl) önce Türkçede kullanıldığına dair birincil kaynak mevcut değildir. Eski Türkler Tanrı'ya "Tengri" diyordu. "Çalap" formu ancak 14. yüzyıldan itibaren Anadolu Türkçesinde belgelenebilmektedir; bu tarihte ise "çelebi" unvanı çoktan kullanılmaktadır. Sonucu türetecek kökün kendisi gecikmeli olarak sahneye çıkıyorsa, türetme zinciri tersine işlemiş demektir.</p>
+    </div>
+
+    <p>Öte yandan, kelimenin farklı bir kanaldan Türkçeye girmiş olabileceğine işaret eden ciddi teoriler de mevcuttur.</p>
+
+    <h2 style="font-size:22px; margin-top: 40px; margin-bottom:8px;">Süryânîce (Aramice) Köken Teorisi</h2>
+    <p>Bu teoriye göre "çelebi", Süryanice <em>ṣəlab / ṣəlīb</em> (haç; mecazen Rab, Hz. İsa) kelimesinden türemiştir. Fonetik geçiş mümkündür: /tsılab/ biçimi Türkçe "çeleb"e yakındır. Geçiş yolu olarak 9-10. yüzyıllarda Nasturi ve Maniheist din adamlarının Orta Asya Türk topluluklarıyla teması öne sürülmektedir. Bu çerçevede anlam dönüşümü şöyle gerçekleşmiş olur: "Rab/Tanrı" → Türkçe ödünçlemesiyle <em>çalab</em> → <em>çalabî</em> (Tanrı'ya mensup) → <em>çelebi</em>. Bu teori, "çalap"ın Anadolu öncesi Türk kaynaklarda neden bulunmadığını da açıklar: kelime zaten dışarıdan gelmiştir.</p>
+
+    <h2 style="font-size:22px; margin-top: 40px; margin-bottom:8px;">Kürtçe Köken Teorisi</h2>
+    <p>Dilbilimciler Nikolay Yakovleviç Marr ve W. Barthold, kelimenin Kürtçe <em>ḍeleb</em> (Allah) ve <em>ḍelebi</em> (asilzade) köklerinden geldiğini öne sürmüştür. Barthold, "çelebi"yi İran'daki Ehl-i Hakk tarikatıyla ilişkilendirmiş; Günümüz Kürtçesinde <em>çelewî</em> (nefsini ıslah etmiş, veli, efendi) ve <em>çelepa</em> (beyefendi, güvenilir kimse) biçimleri de mevcuttur. Bu teoriyi güçlendiren bir bilgi de Mevlânâ'nın halifesi Hüsâmeddin'in Urmiye Kürtlerinden olduğuna dair rivayettir.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Teori</th>
+          <th>Dayanak</th>
+          <th>Sorun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Türkçe: <em>çalap</em>'tan türeme</td>
+          <td>Genel kabul, TDV İA</td>
+          <td>"Çalap"ın 13. yüzyılda kullanıldığı kanıtlanmamış; Tengri varken "çalap" nereden çıktı?</td>
+        </tr>
+        <tr>
+          <td>Süryânîce: <em>ṣəlab</em>'tan türeme</td>
+          <td>Fonetik uyum, aktarım yolu mevcut</td>
+          <td>Henüz geniş akademik kabul görmemiş</td>
+        </tr>
+        <tr>
+          <td>Kürtçe: <em>ḍeleb / ḍelebi</em>'den türeme</td>
+          <td>Marr, Barthold; günümüz Kürtçesinde izleri var</td>
+          <td>Aktarım mekanizması belirsiz</td>
+        </tr>
+        <tr>
+          <td>Rumca, Latince, Arapça</td>
+          <td>Çeşitli 19. yy. araştırmacıları</td>
+          <td>Fonetik veya kronolojik uyumsuzluk nedeniyle reddedildi</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Sonuç olarak: kelimenin kesin kökeni bilinmemektedir. Akademik yazında bunu "bilinen" gibi sunmak, güvenden değil tercihten kaynaklanan bir tutumdur.</p>
+  </section>
+
+  <!-- 2. EFLAKİ -->
+  <section id="eflaqi">
+    <span class="section-num">II.</span>
+    <h2>Ahmed Eflâkî Meselesi: Var mı, Yok mu?</h2>
+    <div class="section-rule"></div>
+
+    <p>Mevlevîlikteki "çelebi" unvanının tarihine dair hemen her anlatı, tek bir kaynağa dayanır: Ahmed Eflâkî'nin <em>Menâḳıbü'l-ʿârifîn</em> adlı eseri. Bu eser, 1318-1353 yılları arasında yazıldığı ileri sürülmekte ve Mevlânâ ile çevresinin biyografisini menkıbe tarzında aktarmaktadır. Peki bu kaynağın kendisi ne kadar güvenilirdir?</p>
+
+    <div class="critical">
+      <span class="critical-label">Tarihsel Boşluk</span>
+      <p>Tahsin Yazıcı, TDV İslâm Ansiklopedisi'ndeki Ahmed Eflâkî maddesinde şunu açıkça yazmaktadır: <em>"Eski kaynakların hiçbirinde ailesi, adı, doğum yeri ve tarihi hakkında bilgi yoktur. Hayatına dair bilgiler, Menâḳıbü'l-ʿârifîn'deki kendisiyle ilgili dolaylı bilgilerden ibarettir."</em> Başka bir deyişle: Ahmed Eflâkî'nin yaşadığını kanıtlayan tek kaynak, Ahmed Eflâkî'nin kendi kitabıdır. Bu, tarih metodolojisinde döngüsel kanıt (self-referential evidence) olarak adlandırılır ve kesin bir tarihî gerçeklik iddiası için yetersizdir.</p>
+    </div>
+
+    <p>Sorun bununla sınırlı değildir. Eserin kronolojisine bakıldığında ciddi boşluklar ortaya çıkmaktadır:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Kriter</th>
+          <th>Durum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>İddia edilen yazılış tarihi</td>
+          <td>1318-1353</td>
+        </tr>
+        <tr>
+          <td>Günümüze ulaşan en eski nüshalar</td>
+          <td>15. yüzyıl (yaklaşık 100 yıllık boşluk)</td>
+        </tr>
+        <tr>
+          <td>İlk Türkçe tercümesi</td>
+          <td>1400-1401 (Süleymaniye Kütüphanesi, Serez nr. 1794)</td>
+        </tr>
+        <tr>
+          <td>İlk matbu baskısı</td>
+          <td>1897, Agra — İngiliz Hindistanı</td>
+        </tr>
+        <tr>
+          <td>İddia edilen yazılıştan ilk baskıya fark</td>
+          <td>~550 yıl</td>
+        </tr>
+        <tr>
+          <td>Aradaki dönemde dış kaynak var mı?</td>
+          <td>Hayır</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>1897'deki baskının İngiliz sömürgesi Hindistan'da yapılması da özellikle dikkat çekicidir. 19. yüzyılın ikinci yarısı, müsteşrik (oryantalist) çevrelerin Orta Doğu ve İslam tarihini sistematik biçimde belgeleme —ve yorumlama— girişimlerinin yoğunlaştığı bir dönemdir. Şüpheyle yaklaşmak için bu başlı başına yeterli bir neden olmasa da, öncesinde 500 yıllık bir sessizlik varsa, "neden tam bu zaman?" sorusu makul bir sorudur.</p>
+
+    <blockquote>
+      <p>Menkıbevi bir eserin içindeki ifadelerle, o eserin yazarının hayatını yeniden inşa etmek — tarih yazımı değil, kurgu üretimdir.</p>
+    </blockquote>
+
+    <p>Tenkitli neşri yapan Tahsin Yazıcı'nın, bu eksikliklere rağmen Eflâkî için kesin biyografik bilgiler sunmayı sürdürmesi —"1286-1291 arasında doğdu", "1360'ta öldü"— metodolojik bir tutarsızlık oluşturmaktadır. Yazıcı'nın kendisi "hiçbir dış kaynak yok" diye belirtirken, aynı metni akademik güvence için kullanmak çelişkidir.</p>
+  </section>
+
+  <!-- 3. GÖLPINARLI -->
+  <section id="golpinarli">
+    <span class="section-num">III.</span>
+    <h2>Gölpınarlı'nın Terminoloji Sorunu</h2>
+    <div class="section-rule"></div>
+
+    <p>Abdülbaki Gölpınarlı, <em>Mevlâna ve Mevlevîlik</em> (1953) adlı eserinde, "çelebi" unvanını şöyle tanımlar: <em>"hükümdarlık hakkına malik olmadıkları halde bir prens nesline mensup olanlara verilen Çelebi unvanı."</em></p>
+
+    <p>Bu tanım, birden fazla açıdan sorunludur.</p>
+
+    <p><strong>Birincisi, terminolojik sorun:</strong> "Prens" kelimesi, Batı kaynaklı bir kavramdır ve Osmanlı-Türk siyasi söz dağarcığında yer almaz. Osmanlı'da karşılığı "şehzade" (Farsça: şeh + zâde), "sultan" veya "bey"dir. Unvanların büyük çoğunluğu zaten Farsça ya da Arapçadır; Gölpınarlı, Türkçe kökenli bir unvanı açıklamak için Batı Avrupa'nın siyasi hiyerarşisinden bir terim seçmiştir.</p>
+
+    <p><strong>İkincisi, kronolojik sorun:</strong> Osmanlı şehzadelerinin "çelebi" unvanıyla anılması —İsa Çelebi, Musa Çelebi, Çelebi Mehmed— ancak 14. yüzyılın sonlarında, yani Fetret Devri'nde (1402-1413) belgelenebilir. Mevlevî çelebiliği ise bundan yaklaşık yüz yıl önce başlamıştır. Dolayısıyla "prens nesli" çağrışımı tarihsel önceliği tersine çevirmektedir.</p>
+
+    <p><strong>Üçüncüsü, içerik sorunu:</strong> "Çelebi" hiçbir zaman yalnızca bir soyluluk unvanı olmamıştır. İbn Battuta, 14. yüzyılda Anadolu'da "efendi" anlamında genel kullanımını kaydetmiştir. 18. yüzyılda Edirne'de şehirli aile reislerinin %12,7'si bu unvanı taşıyordu; ilmiye mensupları, şairler, kâtipler ve hatta bazı gayrimüslimler için de kullanılıyordu. "Prens nesline özgü" bir unvan, bu kadar yaygın kullanamazdı.</p>
+
+    <blockquote>
+      <p>Türkçe kökenli bir unvanı "prens" diye tanımlamak; kültürün kendi kavramlarını Batılı kalıplara sıkıştırmaktır.</p>
+    </blockquote>
+
+    <p>Gölpınarlı, aynı kitabında Mevlânâ'nın milliyeti konusunda da benzer gerilimler yaşar. Bir yanda "aslım Türktür" diye aktardığı rubaiyi sembolik sayar; öte yanda "Ben Türk değilim, yalnızca Türkçede 'su' kelimesini bilirim" mealindeki gazeli Divan-ı Kebir'den aktararak bunun "aksini" söylediğini öne sürer. Hangi ifadenin gerçek, hangisinin sembolik olduğunu belirleme ölçütü belirsizdir; seçim, ulaşılmak istenen sonuca göre yapılmaktadır.</p>
+  </section>
+
+  <!-- 4. TDV İA -->
+  <section id="tdvia">
+    <span class="section-num">IV.</span>
+    <h2>TDV İslâm Ansiklopedisi: "İhtilalin Ansiklopedisi"</h2>
+    <div class="section-rule"></div>
+
+    <p>Türkiye Diyanet Vakfı İslâm Ansiklopedisi, 1988'de yayımlanmaya başlamış ve 2013'te tamamlanmıştır. Ancak hazırlıkları 1983'te başlatılmıştır — yani 12 Eylül 1980 askeri darbesinden yalnızca üç yıl sonra. Kronoloji tesadüf değildir.</p>
+
+    <p>12 Eylül darbesi, Türkiye'de resmî ideoloji olarak "Türk-İslâm sentezi"ni öne çıkarmıştır. Siyasi gerilcelmeyi ve sınıf çatışmasını bastırmak için dini ve milliyetçiliği harmanlayan bu formül, 1982 Anayasası'na yansımış ve Diyanet İşleri Başkanlığı'nın kurumsal ağırlığını önemli ölçüde artırmıştır. Bu iklimde hazırlığına başlanan ve devlet finansmanıyla yürütülen bir "İslâm ansiklopedisi"nin bu ideolojiden bağımsız olduğunu varsaymak, neden güç olduğu anlaşılan bir varsayımdır.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tarih</th>
+          <th>Olay</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>12 Eylül 1980</td>
+          <td>Askeri darbe; "Türk-İslâm sentezi" resmî ideoloji haline geliyor</td>
+        </tr>
+        <tr>
+          <td>1982</td>
+          <td>Yeni anayasa; Diyanet'in kurumsal gücü artırılıyor</td>
+        </tr>
+        <tr>
+          <td>1983</td>
+          <td>TDV İslâm Ansiklopedisi hazırlıkları başlıyor</td>
+        </tr>
+        <tr>
+          <td>1988</td>
+          <td>1. cilt yayımlanıyor</td>
+        </tr>
+        <tr>
+          <td>2013</td>
+          <td>46 cilt tamamlanıyor</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Ansiklopedinin yazım kadrosu büyük ölçüde, Leiden'deki İngilizce <em>Encyclopaedia of Islam</em>'ın Türkçe uyarlaması olan MEB İslâm Ansiklopedisi'nin (1940-1987) editör ve yazarlarından oluşuyordu; kökeninde yine müsteşrik geleneği vardı. Tahsin Yazıcı da bu kadronun önemli bir ismidir: Hem MEB İA'ya katkıda bulunmuş, hem Menâḳıbü'l-ʿârifîn'in tenkitli neşrini yapmış, hem de TDV İA'nın ilk ciltlerinde "Ahmed Eflâkî" maddesini kaleme almıştır.</p>
+
+    <div class="critical">
+      <span class="critical-label">Metodolojik Çelişki</span>
+      <p>Yazıcı, kendi yazdığı maddede Eflâkî'nin varlığını doğrulayan hiçbir dış kaynak olmadığını belirtmiştir. Ne var ki aynı maddede bu dış kaynakların yokluğuna rağmen "1286-1291 arasında doğduğu tahmin edilebilir" ve "1360'ta öldü" gibi kesin tarihler verilmektedir. Kaynağı bulunmayan bir kişi için kesin biyografik bilgi sunmak, akademik yazımın standartlarıyla bağdaşmamaktadır.</p>
+    </div>
+
+    <p>TDV İA'ya yöneltilen eleştiriler bu örnekle sınırlı değildir. Dini konularda tarafgir olduğu, bazı şahsiyetlerin etnik kimliklerini örtbas ettiği ve FETÖ yapılanmasıyla ilişkilendirilen maddelerin sonradan değiştirilip silindiği yönünde ciddi iddialar akademik çevrelerde defalarca dile getirilmiştir.</p>
+  </section>
+
+  <!-- 5. PAPA -->
+  <section id="papa">
+    <span class="section-num">V.</span>
+    <h2>Yapısal Benzerlik: Çelebi ve Papa</h2>
+    <div class="section-rule"></div>
+
+    <p>Tüm bu etimolojik ve kaynak tartışmalarının bir adım ötesine geçildiğinde, daha ilginç bir soru ortaya çıkmaktadır: "Çelebi" unvanının kurumsallaştığı biçim neden bu kadar tanıdık gelir?</p>
+
+    <p>Mevlevî çelebisinin konumuna bakıldığında, yapısal olarak Katolik dünyasındaki Papa kurumunun bir yansıması gibi görünmektedir:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Özellik</th>
+          <th>Mevlevî Çelebisi</th>
+          <th>Papa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Meşruiyet kaynağı</td>
+          <td>Mevlânâ'ya kesintisiz soy zinciri</td>
+          <td>Aziz Petrus'a apostolik veraset zinciri</td>
+        </tr>
+        <tr>
+          <td>İşlevi</td>
+          <td>Tarikatın manevi ve idari lideri</td>
+          <td>Kilise'nin manevi ve idari lideri</td>
+        </tr>
+        <tr>
+          <td>Kutsal mekân</td>
+          <td>Konya, Mevlânâ Türbesi</td>
+          <td>Roma, Aziz Petrus Bazilikası</td>
+        </tr>
+        <tr>
+          <td>Soy/seçilme şartı</td>
+          <td>Baba soyundan Mevlânâ'ya ulaşmak</td>
+          <td>Kardinaller tarafından seçilmek</td>
+        </tr>
+        <tr>
+          <td>Tarihsel kanıt sorunu</td>
+          <td>Kaynaklar geç dönem, menkıbevî</td>
+          <td>Erken dönem için belge sınırlı</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Bu benzerlik, doğrudan bir etki-tepki ilişkisi olduğu anlamına gelmez. Ancak şunu gösterir: Kurumsal din, ister Doğu'da ister Batı'da olsun, benzer ihtiyaçlara benzer yapısal çözümler üretir. Kutsal bir soy ya da misyon zinciri, otoriteyi meşrulaştırmanın en eski yollarından biridir. "Çelebi"nin Mevlevîlikteki kurumsallaşması, bu genel örüntünün bir örneğidir.</p>
+
+    <p>Bu bağlamda, "şehit" (şahit) kelimesiyle Latince "martyr" (tanık) arasındaki anlam dönüşümü de anlamlı bir paraleldir. Her iki kelime de "tanık" anlamından "din uğruna ölen" anlamına evrilmiştir. Bu evrimin İslam'ın ilk yüzyıllarında gerçekleşmesi, Hıristiyanlık ile erken İslam'ın aynı siyasi ve dinî ortamda olgunlaştığının göstergesidir. "Çelebi"nin kurumsallaşmasının, bu büyük kültür alışverişinin geç bir halkası olduğunu düşünmek mümkündür.</p>
+  </section>
+
+  <!-- SONUÇ -->
+  <section id="sonuc">
+    <span class="section-num">VI.</span>
+    <h2>Sonuç: Tarih mi, Kurgu mu?</h2>
+    <div class="section-rule"></div>
+
+    <p>"Çelebi" kelimesi gerçektir. Osmanlı şehzadelerinin, Mevlevî liderlerinin ve Anadolu'nun geniş şehir tabakasının bu unvanı kullandığı da gerçektir. İbn Battuta gibi güvenilir bir gezginin 14. yüzyılda bu kelimeyi kaydetmiş olması, tarihsel varlığı konusunda herhangi bir şüphe bırakmamaktadır.</p>
+
+    <p>Sorunlu olan, bu gerçeğin etrafına örülen anlatıdır.</p>
+
+    <p>Mevlevî çelebiliğine dair bilgilerin neredeyse tamamı, varlığı kendi eserine dayanan bir yazarın (Eflâkî) menkıbevî metni üzerinden aktarılmaktadır. Bu metnin günümüze ulaşan en eski nüshaları 15. yüzyıla aittir, ilk baskısı 1897'de sömürge Hindistanı'nda yapılmıştır ve aradan geçen beş yüz yıl boyunca herhangi bir dış kaynak bu anlatıyı doğrulamamaktadır.</p>
+
+    <p>Gölpınarlı, bu temeli "prens nesli" gibi anakronik kavramlarla süslemiş; TDV İslâm Ansiklopedisi ise tüm bu birikimi 12 Eylül darbesi sonrasının ideolojik atmosferinde "bilimsel" bir kılıfa sokmuştur.</p>
+
+    <blockquote>
+      <p>Tarih yazımında ihtiyatlı olmak, "her şey yalandır" demek değildir. Kanıtın nerede bittiğini, kurgusun nerede başladığını açıkça işaretlemektir.</p>
+    </blockquote>
+
+    <p>Bu yazının savunduğu şey, alternatif bir tarih değildir. Şudur: "Çelebi" unvanının kökeni bilinmemektedir; birden fazla makul teori mevcuttur ve bunların hiçbirinin kesin kanıtı yoktur. Mevlevî çelebiliğine dair anlatılar, kritik değerlendirmeye tabi tutulmadan "tarih" olarak aktarılamaz. TDV İslâm Ansiklopedisi, yazımına ideolojik bir atmosferde başlanmış, kökeninde müsteşriklerin çalışması olan ve kendi itirafıyla dış kaynaktan yoksun bilgileri kesin gibi sunan bir eserdir.</p>
+
+    <p>Bunları söylemek tarih yıkmak değildir. Tarihin yapılma biçimine dikkat etmektir.</p>
+
+    <div class="source-note">
+      <strong>Başlıca Kaynaklar:</strong> Abdülbaki Gölpınarlı, <em>Mevlâna ve Mevlevîlik</em> (İstanbul, 1953) · Tahsin Yazıcı, "Ahmed Eflâkî" maddesi, <em>TDV İslâm Ansiklopedisi</em>, c. 2 (1989) · Tahsin Yazıcı (haz.), <em>Menâḳıbü'l-ʿârifîn</em>, 2 cilt (Ankara, 1959-1961) · İbn Battuta, <em>Seyahatnâme</em> · N. Ya. Marr ve W. Barthold, "çelebi" etimolojisi üzerine çalışmalar · TDV İA, "Çelebi" maddesi
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-rule"></div>
+  <p>Araştırma Notu · Çelebi Unvanı Üzerine Kaynak Eleştirisi</p>
+  <p style="margin-top:8px; font-size:11px;">Kanıtı olmayan iddiayı "tarih" saymak, tarihe yapılan en büyük haksızlıktır.</p>
+</footer>
+
+</body>
+</html>
